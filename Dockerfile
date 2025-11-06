@@ -1,5 +1,5 @@
 # Use an official OpenJDK image as the base
-FROM eclipse-temurin:17-jdk-jammy
+FROM eclipse-temurin:17-jdk-alpine
 
 # Set working directory
 WORKDIR /app
@@ -9,6 +9,9 @@ COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
 
+# Give execute permission to mvnw
+RUN chmod +x mvnw
+
 # Download dependencies
 RUN ./mvnw dependency:go-offline
 
@@ -17,6 +20,9 @@ COPY src ./src
 
 # Package the Spring Boot app
 RUN ./mvnw clean package -DskipTests
+
+# Expose the port Spring Boot runs on (optional)
+EXPOSE 8080
 
 # Run the application
 CMD ["java", "-jar", "target/movie-ticket-booking-0.0.1-SNAPSHOT.jar"]
