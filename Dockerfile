@@ -20,5 +20,3 @@ RUN ./mvnw clean package -DskipTests
 
 # Run the application
 CMD ["java", "-jar", "target/movie-ticket-booking-0.0.1-SNAPSHOT.jar"]
-
-Added Dockerfile for Render deployment
