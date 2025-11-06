@@ -21,8 +21,8 @@ COPY src ./src
 # Package the Spring Boot app
 RUN ./mvnw clean package -DskipTests
 
-# Expose the port Spring Boot runs on (optional)
-EXPOSE 8080
+# Expose the port Spring Boot runs on
+EXPOSE 8090
 
 # Run the application
 CMD ["java", "-jar", "target/movie-ticket-booking-0.0.1-SNAPSHOT.jar"]
